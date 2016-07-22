@@ -8,7 +8,7 @@ Router.prototype.add = function (method, url, handler) {
 
 Router.prototype.routing = function (request, response) {
   let path = require('url').parse(request.url).pathname;
-  console.log(path);
+  console.log("The path is: " + path);
   return this.routers.some(function (aRouter) {
     let match = aRouter.url.exec(path);
     if (!match || aRouter.method != request.method)

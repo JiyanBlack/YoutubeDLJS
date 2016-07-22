@@ -11,13 +11,13 @@ var fileServer = ecstatic({ root: "./public" });
 //automatically begin download the downloader
 //and show the instruction of how to use downloader...
 
-function respond(response, statusCode, data, type) {
-  response.writeHead(statusCode, { "Conten-Type": type || "text/plain" });
-  if (data && data.pipe)
-    data.pipe(response);
-  else
-    response.end(data);
+function respond(response, status, data, type) {
+  response.writeHead(status, {
+    "Content-Type": type || "text/plain"
+  });
+  response.end(data);
 }
+
 
 var router = new Router();
 
@@ -40,7 +40,7 @@ function readJSONStream(stream, callback) {
 
 
 
-router.add("PUT", /^\/$/, function (request, response) {
+router.add("POST", /^\//, function (request, response) {
   readJSONStream(request, function (error, youtubeURLs) {
     if (error) respond(response, 400, error.toString());
     else {
@@ -50,14 +50,16 @@ router.add("PUT", /^\/$/, function (request, response) {
         if (!validationReg.exec(url)) throw new Error('Invalid Youtube URL!');
       });
       let timeStamp = youtubeURLs.timeStamp;
-      console.log(youtubeURLs);
+      // console.log(youtubeURLs);
       zipFile.append(JSON.stringify(youtubeURLs), { name: 'urls.json' }).directory('./server/downloader/', './downloader').finalize();
       let outputPath = './public/' + timeStamp.toString() + '.zip'
       let output = fs.createWriteStream(outputPath);
       zipFile.pipe(output);
-      let jsonInfo = JSON.stringify({ name: timeStamp + ".zip" });
+
       output.on("close", function () {
-        respond(response, 204, jsonInfo);
+        // console.log("Sending " + timeStamp + ".zip");
+        respond(response, 200, JSON.stringify({ name: timeStamp + ".zip" }),
+          "application/json");
       });
     }
   })
@@ -66,6 +68,7 @@ router.add("PUT", /^\/$/, function (request, response) {
 
 http.createServer(function (request, response) {
   if (!router.routing(request, response)) {
+    // console.log("No router found!")
     fileServer(request, response);
   }
 }).listen(8000);
