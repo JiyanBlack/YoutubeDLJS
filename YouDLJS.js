@@ -42,6 +42,10 @@ router.add("PUT", /^\/sendURL\/(d+)$/, function (request, response, timeStamp) {
     if (error) respond(response, 400, error.toString());
     else {
       generateZip(youtubeURLs, timeStamp);
+      generateZip.on("finished", function (error, result) {
+
+      })
+
     }
   })
 })

@@ -1,0 +1,26 @@
+{
+  "name": "youtubedljs",
+  "version": "0.1.0",
+  "description": "A website for generating codes for downloading youtube videos.",
+  "main": "YouDLJS.js",
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JiyanBlack/YoutubeDLJS.git"
+  },
+  "keywords": [
+    "youtube",
+    "download",
+    "YouDL",
+    "YoutubeDLJS",
+    "youtubedljs"
+  ],
+  "author": "JI YAN",
+  "license": "CC-BY-ND-3.0",
+  "bugs": {
+    "url": "https://github.com/JiyanBlack/YoutubeDLJS/issues"
+  },
+  "homepage": "https://github.com/JiyanBlack/YoutubeDLJS#readme"
+}
