@@ -5,6 +5,14 @@
 </head>
 
 <body>
-  <input type="button" id="submitURL" value="submit">
+  <p>Please give us the youtube urls you'd like to download:</p>
+  <textarea id="textarea" rows="2" cols="60"></textarea>
+  <input type="button" id="add" value="add">
+  <p id="error" style="color:red;"></p>
+  <p id="urlsInfo">The urls you provided to us:</p>
+  <p id="urls"></p>
+  <br>
+  <input type="button" id="submitURL" value="download">
 </body>
+<script type="text/javascript" src="jquery-3.1.9.min.js"></script>
 <script type="text/javascript" src="client.js"></script>
