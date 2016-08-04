@@ -21,9 +21,9 @@ let errorPara = document.getElementById('error');
 let urlArray = [];
 let textarea = document.getElementById('textarea');
 let urlsPara = document.getElementById('urls');
-let addButton = document.getElementById('add');
+let addButton = document.getElementById('addButton');
 let urlsInfo = document.getElementById('urlsInfo');
-let submit = document.getElementById('submitURL');
+let submit = document.getElementById('submitButton');
 
 addButton.addEventListener('click', function (event) {
   clearError();
